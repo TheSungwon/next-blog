@@ -1,44 +1,45 @@
-import Image from "next/image"
-import Link from "next/link"
-import faker from "faker";
+
+import Image from "next/image";
+import Link from "next/link";
+import { Swiper, SwiperSlide } from 'swiper/react';
 import Author from "./_child/author"
 import { useEffect, useState } from "react";
+import faker from "faker";
 
-export default function section2(){
+
+
+export default function section3(){
     return(
         <section className="container mx-auto md:px-20 py-10">
-            <h1 className="font-bold text-4xl py-12 text-center">latest posts</h1>
+            <h1 className="font-bold text-4xl py-12 text-center">Most popular</h1>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-14">
-                {Post()}
-                {Post()}
-                {Post()}
-                {Post()}
-                {Post()}
-                {Post()}
-                {Post()}
-                {Post()}
-                {Post()}
-            </div>
+            <Swiper
+                slidesPerView={2}
+            >
+                <SwiperSlide>{Post()}</SwiperSlide>
+                <SwiperSlide>{Post()}</SwiperSlide>
+                <SwiperSlide>{Post()}</SwiperSlide>
+                <SwiperSlide>{Post()}</SwiperSlide>
+                <SwiperSlide>{Post()}</SwiperSlide>
+            </Swiper>
+
         </section>
     )
 }
 
 
-
-
 function Post(){
-    
+    // console.log(faker)
     const [loading, setLoading] = useState(false);
     useEffect(()=>{
         setLoading(!loading);
     },[]);
     
     return(
-        <div className="item">
+        <div className="grid">
             <div className="images">
                 <Link href={"/"}>
-                    <Image src={"/images/cat.jpg"} className="rounded-full" width={500} height={350} alt=""/>
+                <Image src={"/images/cat.jpg"} className="rounded-t-full" width={600} height={350} alt=""/>
                 </Link>
             </div>
             <div className="info flex justify-center flex-col py-4">
@@ -57,7 +58,8 @@ function Post(){
             </div>
             <div className="title">
                 <Link href={"/"}>
-                        <span className="text-xl font-bold">
+                        <span className="text-3xl md:text-4xl font-bold"
+                         style={{color:`${faker.commerce.color()}`}}>
                         {loading? faker.hacker.phrase():"loading..."}
                         </span>
                     </Link>

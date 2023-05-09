@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay } from "swiper";
 import "swiper/css"
 import faker from "faker";
+import { useEffect, useState } from "react";
 
 
 
@@ -47,6 +48,11 @@ export default function section1() {
 
 function Slide() {
     
+    const [loading, setLoading] = useState(false);
+    useEffect(()=>{
+        setLoading(!loading);
+    },[]);
+    
     return (
         <div className="grid md:grid-cols-2">
             <div className="image">
@@ -56,21 +62,25 @@ function Slide() {
             </div>
             <div className="info justify-center flex-col">
                 <div>
-                    <Link href={"/"}> <span className="text-orange-600 hover:text-orange-300">2023-05-</span>
+                    <Link href={"/"}> <span className="text-orange-600 hover:text-orange-300">
+                        {loading? faker.internet.port(): "loading..."}
+                    </span>
                     </Link>
                      <Link href={"/"}>
-                        <span className="text-gray-600 hover:text-gray-50">30</span>
+                        <span className="text-gray-600 hover:text-gray-50">
+                        {loading? faker.name.jobType():"loading..."}
+                        </span>
                     </Link>
                 </div>
                 <div className="title">
                 <Link href={"/"}>
                         <span className="text-3xl md:text-6xl font-bold text-gray-200 hover:text-gray-500">
-                        {faker.lorem.word()}
+                        {loading? faker.hacker.phrase():"loading..."}
                         </span>
                     </Link>
                 </div>
                 <p className="text-gray-500 py-3">
-                {faker.lorem.text()}
+                {loading? faker.lorem.word():"loading..."}
                 </p>
 
                 <Author />
