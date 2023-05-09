@@ -56,13 +56,17 @@ function Slide() {
             </div>
             <div className="info justify-center flex-col">
                 <div>
-                    <Link href={"/"}> <span className="text-orange-600 hover:text-orange-300">2023-05-...</span>
+                    <Link href={"/"}> <span className="text-orange-600 hover:text-orange-300">2023-05-</span>
+                    </Link>
+                     <Link href={"/"}>
+                        <span className="text-gray-600 hover:text-gray-50">30</span>
                     </Link>
                 </div>
-
-                <div>
-                    <Link href={"/"}>
-                        <span className="text-3xl md:text-6xl font-bold text-gray-200 hover:text-gray-500">mon tue wed thu ...</span>
+                <div className="title">
+                <Link href={"/"}>
+                        <span className="text-3xl md:text-6xl font-bold text-gray-200 hover:text-gray-500">
+                        {faker.lorem.word()}
+                        </span>
                     </Link>
                 </div>
                 <p className="text-gray-500 py-3">
