@@ -31,7 +31,7 @@ function Post(){
     
     const [loading, setLoading] = useState(false);
     useEffect(()=>{
-        setLoading(!loading);
+        {loading==false? setLoading(!loading):null}
     },[]);
     
     return(

@@ -1,49 +1,53 @@
-
-import Image from "next/image";
-import Link from "next/link";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import Image from "next/image"
+import Link from "next/link"
 import Author from "./_child/author"
-import { useEffect, useState } from "react";
 import faker from "faker";
+import { useEffect, useState } from "react";
 
-
-
-export default function section3(){
+export default function section4(){
     return(
         <section className="container mx-auto md:px-20 py-10">
-            <h1 className="font-bold text-4xl py-12 text-center">Most popular</h1>
+            <div className="grid lg:grid-cols-2">
+                <div className="item">
+                    <h1 className="font-bold text-4xl py-12 text-clip">Business</h1>
+                    <div className="flex flex-col gap-6">
+                        {Post()}
+                        {Post()}
+                        {Post()}
+                    </div>
+                </div>
 
-            <Swiper
-                slidesPerView={2}
-            >
-                <SwiperSlide>{Post()}</SwiperSlide>
-                <SwiperSlide>{Post()}</SwiperSlide>
-                <SwiperSlide>{Post()}</SwiperSlide>
-                <SwiperSlide>{Post()}</SwiperSlide>
-                <SwiperSlide>{Post()}</SwiperSlide>
-            </Swiper>
-
+                <div className="item">
+                    <h1 className="font-bold text-4xl py-12 text-clip">Travel</h1>
+                    <div className="flex flex-col gap-6">
+                        {Post()}
+                        {Post()}
+                        {Post()}
+                    </div>
+                </div>
+            </div>
         </section>
     )
 }
 
-
 function Post(){
-    // console.log(faker)
+    
     const [loading, setLoading] = useState(false);
     useEffect(()=>{
         {loading==false? setLoading(!loading):null}
     },[]);
-    
+
     if(loading){
+    
     return(
-        <div className="grid">
-            <div className="images">
-                <Link href={"/"}>
-                <Image src={"/images/cat.jpg"} className="rounded-t-full" width={600} height={350} alt=""/>
+        <div className="flex gap-5">
+            <div className="image flex flex-col justify-start">
+                <Link href={"/"} className="rounded">
+                    <Image src={"/images/cat.jpg"} width={300} height={300} alt=""/>
                 </Link>
             </div>
-            <div className="info flex justify-center flex-col py-4">
+
+            <div className="info flex justify-center flex-col">
                 <div>
                     <Link href={"/"}>
                         <span className="text-orange-600 hover:text-orange-300">
@@ -56,19 +60,16 @@ function Post(){
                         </span>
                     </Link>
                 </div>
-            </div>
-            <div className="title">
+                <div className="title">
                 <Link href={"/"}>
                         <span className="text-3xl md:text-4xl font-bold"
                          style={{color:`${faker.commerce.color()}`}}>
                         {loading? faker.hacker.phrase():"loading..."}
                         </span>
                     </Link>
+                </div>
+                    <Author></Author>
             </div>
-            <p className="text-gray-500 py-3">
-            {loading? faker.lorem.sentence(1):"loading..."}
-            </p>
-            <Author />
         </div>
     )
     }else{
